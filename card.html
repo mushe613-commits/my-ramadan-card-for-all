@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Ramadan Card for youe</title>
+    <meta name="description" content="A special Ramadan greeting for you.">
+
+    <style>
+        body {
+            background: radial-gradient(circle, #0f172a 0%, #020617 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Georgia', serif;
+            color: #d4af37;
+        }
+
+        /* The Magic Button */
+        #mainBtn {
+            padding: 20px 50px;
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, #d4af37, #f4cf57);
+            border: none;
+            color: #020617;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            transition: 0.4s;
+            z-index: 100;
+        }
+
+        #mainBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.9);
+        }
+
+        /* The Card Display */
+        #cardDisplay {
+            display: none;
+            text-align: center;
+            z-index: 10;
+            animation: appear 2.5s ease-out forwards;
+        }
+
+        .card-frame {
+            max-width: 90%;
+            width: 450px;
+            border: 4px solid #d4af37;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 5px; }
+        .for-you { font-style: italic; color: #f4cf57; font-size: 1.5rem; }
+
+        @keyframes appear {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Star Effect */
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="mainBtn">🌙 Press for a Surprise 🌙</button>
+
+    <div id="cardDisplay">
+        <img src="c:\Users\User\Desktop\Screenshot 2026-02-27 160049.png" alt="Ramadan Card" class="card-frame">
+        <h1>Ramadan Kareem</h1>
+        <p class="for-you"></p>May your month be full of peace and light for you</p>
+        
+        <audio id="ramadanSong">
+            <source src="song.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        const btn = document.getElementById('mainBtn');
+        const card = document.getElementById('cardDisplay');
+        const song = document.getElementById('ramadanSong');
+
+        btn.addEventListener('click', () => {
+            btn.style.display = 'none';
+            card.style.display = 'block';
+            
+            // Play music
+            song.play();
+
+            // Create falling stars
+            for (let i = 0; i < 60; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 3 + 'px';
+                star.style.width = size;
+                star.style.height = size;
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = '-10px';
+                star.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(star);
+            }
+        });
+    </script>
+
+</body>
+</html>
